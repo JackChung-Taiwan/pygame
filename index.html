@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="從零開始學習 Pygame：安裝工具、遊戲迴圈、鍵盤控制、碰撞偵測、音效與完整遊戲範例。">
+  <title>Pygame 遊戲程式設計教室</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
+
+  <header class="site-header" id="top">
+    <nav class="navbar container" aria-label="主要導覽">
+      <a class="brand" href="#top" aria-label="Pygame 教室首頁">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="python-blue">Py</span><span class="python-yellow">Game</span>
+        </span>
+        <span>Pygame 遊戲教室</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links">☰</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#roadmap">學習步驟</a>
+        <a href="#install">安裝工具</a>
+        <a href="#functions">常用函式</a>
+        <a href="#lessons">核心教學</a>
+        <a href="#games">遊戲範例</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">PYTHON × 2D GAME DEVELOPMENT</div>
+          <h1>用 Python 打造<br><span>自己的第一款遊戲</span></h1>
+          <p>從安裝環境開始，逐步學會遊戲視窗、鍵盤控制、繪圖、碰撞、分數與音效，最後完成三款可執行的 Pygame 小遊戲。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#roadmap">開始學習</a>
+            <a class="button button-secondary" href="https://github.com/JackChung-Taiwan/pygame" target="_blank" rel="noreferrer">查看 GitHub</a>
+          </div>
+          <div class="hero-stats" aria-label="課程重點">
+            <div><strong>8</strong><span>學習階段</span></div>
+            <div><strong>20+</strong><span>常用函式</span></div>
+            <div><strong>3</strong><span>完整遊戲</span></div>
+          </div>
+        </div>
+
+        <div class="code-window reveal" aria-label="Pygame 基本程式範例">
+          <div class="window-bar"><span></span><span></span><span></span><b>main.py</b></div>
+          <pre><code><span class="code-blue">import</span> pygame
+
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
+running = <span class="code-yellow">True</span>
+
+<span class="code-blue">while</span> running:
+    <span class="code-blue">for</span> event <span class="code-blue">in</span> pygame.event.get():
+        <span class="code-blue">if</span> event.type == pygame.QUIT:
+            running = <span class="code-yellow">False</span>
+
+    screen.fill((32, 76, 120))
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()</code></pre>
+          <div class="terminal-line"><span>▶</span> 遊戲視窗已啟動，FPS：60</div>
+        </div>
+      </div>
+      <div class="hero-wave" aria-hidden="true"></div>
+    </section>
+
+    <section class="section" id="roadmap">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">LEARNING ROADMAP</div>
+          <h2>Pygame 學習步驟</h2>
+          <p>依照順序完成八個階段，從基本視窗一路進階到完整遊戲。</p>
+        </div>
+
+        <div class="roadmap-grid">
+          <article class="roadmap-card reveal"><span>01</span><div><h3>安裝環境</h3><p>安裝 Python、Pygame 與程式編輯器。</p></div></article>
+          <article class="roadmap-card reveal"><span>02</span><div><h3>建立視窗</h3><p>初始化 Pygame，設定遊戲尺寸與標題。</p></div></article>
+          <article class="roadmap-card reveal"><span>03</span><div><h3>遊戲迴圈</h3><p>持續處理事件、更新狀態與繪製畫面。</p></div></article>
+          <article class="roadmap-card reveal"><span>04</span><div><h3>鍵盤控制</h3><p>使用方向鍵或 WASD 控制玩家移動。</p></div></article>
+          <article class="roadmap-card reveal"><span>05</span><div><h3>圖形與圖片</h3><p>繪製圖形、載入角色圖片與背景。</p></div></article>
+          <article class="roadmap-card reveal"><span>06</span><div><h3>碰撞判定</h3><p>使用 Rect 偵測玩家、敵人與道具。</p></div></article>
+          <article class="roadmap-card reveal"><span>07</span><div><h3>分數與音效</h3><p>顯示文字、播放音效與背景音樂。</p></div></article>
+          <article class="roadmap-card reveal"><span>08</span><div><h3>完成遊戲</h3><p>整合開始、遊玩、勝利與重新開始流程。</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tinted" id="install">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">GETTING STARTED</div>
+          <h2>需要安裝的工具</h2>
+          <p>先完成開發環境設定，再開始撰寫第一個遊戲。</p>
+        </div>
+
+        <div class="table-wrap reveal">
+          <table>
+            <thead><tr><th>項目</th><th>必要性</th><th>安裝方式</th><th>用途</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Python 3</strong></td><td><span class="tag required">必要</span></td><td>從 Python 官網安裝</td><td>執行 Python 與 Pygame 程式</td></tr>
+              <tr><td><strong>pip</strong></td><td><span class="tag required">必要</span></td><td>通常隨 Python 安裝</td><td>安裝及更新 Python 套件</td></tr>
+              <tr><td><strong>Pygame</strong></td><td><span class="tag required">必要</span></td><td><code>python -m pip install pygame</code></td><td>提供視窗、事件、圖形、音效與碰撞功能</td></tr>
+              <tr><td><strong>VS Code / Thonny</strong></td><td><span class="tag recommended">建議</span></td><td>選擇一套程式編輯器</td><td>撰寫、執行與除錯程式</td></tr>
+              <tr><td><strong>圖片與音效</strong></td><td><span class="tag optional">選用</span></td><td>準備 PNG、WAV、OGG 等素材</td><td>製作角色、背景、音效與音樂</td></tr>
+              <tr><td><strong>Git</strong></td><td><span class="tag optional">選用</span></td><td>安裝 Git</td><td>保存版本與上傳 GitHub</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="install-grid">
+          <article class="step-panel reveal">
+            <div class="step-number">1</div>
+            <div><h3>確認 Python</h3><p>開啟終端機或命令提示字元，輸入：</p><div class="command"><code>python --version</code><button class="copy-button" data-copy="python --version">複製</button></div></div>
+          </article>
+          <article class="step-panel reveal">
+            <div class="step-number">2</div>
+            <div><h3>安裝 Pygame</h3><p>使用 pip 下載並安裝 Pygame：</p><div class="command"><code>python -m pip install pygame</code><button class="copy-button" data-copy="python -m pip install pygame">複製</button></div></div>
+          </article>
+          <article class="step-panel reveal">
+            <div class="step-number">3</div>
+            <div><h3>測試安裝</h3><p>執行官方內建的範例遊戲：</p><div class="command"><code>python -m pygame.examples.aliens</code><button class="copy-button" data-copy="python -m pygame.examples.aliens">複製</button></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="functions">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">QUICK REFERENCE</div>
+          <h2>常用模組與 Function</h2>
+          <p>利用搜尋功能快速找到課堂中需要的工具。</p>
+        </div>
+
+        <div class="function-toolbar reveal">
+          <label for="function-search">搜尋函式</label>
+          <input id="function-search" type="search" placeholder="例如：鍵盤、碰撞、音效、Rect...">
+        </div>
+
+        <div class="function-grid" id="function-grid">
+          <article class="function-card reveal" data-search="display 視窗 畫面 set_mode flip update"><code>pygame.display</code><h3>建立與更新視窗</h3><p><code>set_mode()</code> 建立視窗，<code>flip()</code> 更新畫面。</p></article>
+          <article class="function-card reveal" data-search="event 事件 鍵盤 滑鼠 quit keydown"><code>pygame.event</code><h3>接收遊戲事件</h3><p>處理關閉視窗、鍵盤按下及滑鼠點擊。</p></article>
+          <article class="function-card reveal" data-search="key 鍵盤 get_pressed WASD 方向鍵"><code>pygame.key</code><h3>偵測鍵盤狀態</h3><p><code>get_pressed()</code> 適合玩家持續移動。</p></article>
+          <article class="function-card reveal" data-search="mouse 滑鼠 座標 點擊 get_pos"><code>pygame.mouse</code><h3>取得滑鼠操作</h3><p>讀取滑鼠座標、按鍵與游標狀態。</p></article>
+          <article class="function-card reveal" data-search="draw 繪圖 rect circle line polygon"><code>pygame.draw</code><h3>繪製基本圖形</h3><p>矩形、圓形、直線、多邊形與橢圓。</p></article>
+          <article class="function-card reveal" data-search="image 圖片 load png jpg convert_alpha"><code>pygame.image</code><h3>載入圖片</h3><p>將 PNG、JPG 等素材轉為 Surface。</p></article>
+          <article class="function-card reveal" data-search="transform 縮放 旋轉 翻轉 scale rotate flip"><code>pygame.transform</code><h3>修改圖片</h3><p>縮放、旋轉、翻轉角色與背景。</p></article>
+          <article class="function-card reveal" data-search="Rect 矩形 位置 碰撞 colliderect collidepoint"><code>pygame.Rect</code><h3>位置與碰撞</h3><p>管理座標、尺寸、對齊及矩形碰撞。</p></article>
+          <article class="function-card reveal" data-search="time 時間 FPS clock tick timer"><code>pygame.time</code><h3>控制時間與 FPS</h3><p><code>Clock.tick()</code> 控制每秒更新次數。</p></article>
+          <article class="function-card reveal" data-search="font 文字 分數 render 字型"><code>pygame.font</code><h3>顯示文字與分數</h3><p>建立字型並將文字轉為可繪製的 Surface。</p></article>
+          <article class="function-card reveal" data-search="mixer 音效 音樂 sound music"><code>pygame.mixer</code><h3>播放音效與音樂</h3><p>處理短音效、背景音樂與音量。</p></article>
+          <article class="function-card reveal" data-search="sprite 精靈 群組 敵人 子彈 group collide"><code>pygame.sprite</code><h3>管理遊戲物件</h3><p>集中更新玩家、敵人、子彈與道具。</p></article>
+        </div>
+        <p class="no-results" id="no-results" hidden>找不到符合的函式，請更換關鍵字。</p>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="lessons">
+      <div class="container">
+        <div class="section-heading light reveal">
+          <div class="eyebrow">CORE LESSONS</div>
+          <h2>六個核心教學</h2>
+          <p>點選主題，查看概念、程式碼與實作重點。</p>
+        </div>
+
+        <div class="lesson-layout reveal">
+          <div class="lesson-tabs" role="tablist" aria-label="Pygame 核心教學">
+            <button class="lesson-tab active" role="tab" aria-selected="true" data-lesson="window">01 建立遊戲視窗</button>
+            <button class="lesson-tab" role="tab" aria-selected="false" data-lesson="loop">02 遊戲主迴圈</button>
+            <button class="lesson-tab" role="tab" aria-selected="false" data-lesson="control">03 鍵盤控制</button>
+            <button class="lesson-tab" role="tab" aria-selected="false" data-lesson="draw">04 圖形與圖片</button>
+            <button class="lesson-tab" role="tab" aria-selected="false" data-lesson="collision">05 碰撞與分數</button>
+            <button class="lesson-tab" role="tab" aria-selected="false" data-lesson="sound">06 音效與完成</button>
+          </div>
+
+          <div class="lesson-content">
+            <article class="lesson-panel active" id="lesson-window">
+              <div><span class="lesson-label">LESSON 01</span><h3>建立第一個遊戲視窗</h3><p>先初始化 Pygame，再設定視窗寬度、高度與標題。</p></div>
+              <pre><code>import pygame
+
+pygame.init()
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("我的第一款遊戲")</code></pre>
+              <div class="lesson-tip"><strong>實作任務：</strong>將視窗改成 1000 × 700，並設定自己的遊戲名稱。</div>
+            </article>
+
+            <article class="lesson-panel" id="lesson-loop">
+              <div><span class="lesson-label">LESSON 02</span><h3>理解遊戲主迴圈</h3><p>遊戲會不斷執行「事件 → 更新 → 繪製 → 控制 FPS」。</p></div>
+              <pre><code>clock = pygame.time.Clock()
+running = True
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    screen.fill((245, 249, 255))
+    pygame.display.flip()
+    clock.tick(60)</code></pre>
+              <div class="lesson-tip"><strong>實作任務：</strong>修改背景 RGB 顏色，觀察遊戲視窗的變化。</div>
+            </article>
+
+            <article class="lesson-panel" id="lesson-control">
+              <div><span class="lesson-label">LESSON 03</span><h3>使用鍵盤控制角色</h3><p><code>get_pressed()</code> 能在按住按鍵時持續移動角色。</p></div>
+              <pre><code>keys = pygame.key.get_pressed()
+
+if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+    player.x -= speed
+if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+    player.x += speed
+if keys[pygame.K_UP] or keys[pygame.K_w]:
+    player.y -= speed
+if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+    player.y += speed</code></pre>
+              <div class="lesson-tip"><strong>實作任務：</strong>加入 Shift 加速功能，讓玩家移動速度變成兩倍。</div>
+            </article>
+
+            <article class="lesson-panel" id="lesson-draw">
+              <div><span class="lesson-label">LESSON 04</span><h3>繪製圖形與載入圖片</h3><p>可先用幾何圖形製作原型，再替換成圖片素材。</p></div>
+              <pre><code># 畫出矩形玩家
+pygame.draw.rect(screen, (55, 118, 171), player)
+
+# 載入透明 PNG
+image = pygame.image.load("player.png").convert_alpha()
+image = pygame.transform.scale(image, (64, 64))
+screen.blit(image, player)</code></pre>
+              <div class="lesson-tip"><strong>實作任務：</strong>用圓形製作金幣，再使用黃色填滿。</div>
+            </article>
+
+            <article class="lesson-panel" id="lesson-collision">
+              <div><span class="lesson-label">LESSON 05</span><h3>碰撞判定與分數</h3><p>利用 Rect 判斷玩家是否碰到食物、敵人或終點。</p></div>
+              <pre><code>if player.colliderect(coin):
+    score += 1
+    coin.x = random.randint(0, WIDTH - coin.width)
+    coin.y = random.randint(0, HEIGHT - coin.height)
+
+player.clamp_ip(screen.get_rect())</code></pre>
+              <div class="lesson-tip"><strong>實作任務：</strong>加入生命值，碰到紅色敵人時扣除一點生命。</div>
+            </article>
+
+            <article class="lesson-panel" id="lesson-sound">
+              <div><span class="lesson-label">LESSON 06</span><h3>音效、音樂與遊戲完成</h3><p>加入聲音回饋，並設計開始、遊玩、結束與重新開始狀態。</p></div>
+              <pre><code>coin_sound = pygame.mixer.Sound("coin.wav")
+coin_sound.set_volume(0.5)
+coin_sound.play()
+
+pygame.mixer.music.load("music.ogg")
+pygame.mixer.music.play(-1)</code></pre>
+              <div class="lesson-tip"><strong>實作任務：</strong>按 R 重新開始遊戲，按空白鍵暫停或繼續。</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="games">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">GAME PROJECTS</div>
+          <h2>三款完整遊戲範例</h2>
+          <p>每款遊戲都附有完整 Python 程式，可下載後直接執行。</p>
+        </div>
+
+        <div class="game-grid">
+          <article class="game-card reveal">
+            <div class="game-preview snake-preview" aria-hidden="true">
+              <span class="snake-block s1"></span><span class="snake-block s2"></span><span class="snake-block s3"></span><span class="snake-block s4"></span><span class="food-dot"></span>
+            </div>
+            <div class="game-body">
+              <span class="difficulty beginner">入門</span>
+              <h3>貪食蛇 Snake</h3>
+              <p>使用方向鍵移動，吃到食物會加分並增加蛇身，撞牆或撞到自己時結束。</p>
+              <ul><li>方向鍵事件</li><li>格狀座標</li><li>串列與碰撞</li><li>分數與重玩</li></ul>
+              <div class="game-actions"><a class="button button-primary small" href="examples/snake.py" download>下載程式</a><button class="button button-ghost small code-toggle" data-target="snake-code">查看重點</button></div>
+              <pre class="game-code" id="snake-code"><code>new_head = snake[0].copy()
+new_head.x += direction.x * CELL_SIZE
+
+if new_head.colliderect(food):
+    score += 1
+else:
+    snake.pop()</code></pre>
+            </div>
+          </article>
+
+          <article class="game-card reveal">
+            <div class="game-preview dodge-preview" aria-hidden="true">
+              <span class="dodge-player"></span><span class="meteor m1"></span><span class="meteor m2"></span><span class="meteor m3"></span>
+            </div>
+            <div class="game-body">
+              <span class="difficulty intermediate">進階</span>
+              <h3>閃避隕石 Dodge</h3>
+              <p>左右移動躲避從上方落下的隕石，存活時間越久，速度與分數越高。</p>
+              <ul><li>持續按鍵</li><li>隨機生成</li><li>Delta Time</li><li>難度遞增</li></ul>
+              <div class="game-actions"><a class="button button-primary small" href="examples/dodge_game.py" download>下載程式</a><button class="button button-ghost small code-toggle" data-target="dodge-code">查看重點</button></div>
+              <pre class="game-code" id="dodge-code"><code>dt = clock.tick(FPS) / 1000
+meteor.y += meteor_speed * dt
+
+if player.colliderect(meteor):
+    game_over = True</code></pre>
+            </div>
+          </article>
+
+          <article class="game-card reveal">
+            <div class="game-preview target-preview" aria-hidden="true">
+              <span class="target-ring r1"></span><span class="target-ring r2"></span><span class="target-ring r3"></span><span class="cursor-icon">↖</span>
+            </div>
+            <div class="game-body">
+              <span class="difficulty challenge">挑戰</span>
+              <h3>點擊目標 Click Target</h3>
+              <p>在倒數時間內點擊隨機出現的目標，練習滑鼠事件、計時器與命中判定。</p>
+              <ul><li>滑鼠事件</li><li>圓形碰撞</li><li>倒數計時</li><li>最高分紀錄</li></ul>
+              <div class="game-actions"><a class="button button-primary small" href="examples/click_target.py" download>下載程式</a><button class="button button-ghost small code-toggle" data-target="target-code">查看重點</button></div>
+              <pre class="game-code" id="target-code"><code>distance = math.hypot(
+    mouse_x - target_x,
+    mouse_y - target_y
+)
+if distance <= TARGET_RADIUS:
+    score += 1</code></pre>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tinted" id="demo">
+      <div class="container demo-grid">
+        <div class="demo-copy reveal">
+          <div class="eyebrow">BROWSER PRACTICE</div>
+          <h2>先在網頁上體驗鍵盤控制</h2>
+          <p>點一下右側遊戲畫面，使用方向鍵或 WASD 移動藍色玩家，收集黃色金幣。這個網頁小練習模擬 Pygame 的鍵盤、移動、碰撞與分數概念。</p>
+          <div class="key-guide"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>或</span><kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd></div>
+          <button class="button button-secondary" id="reset-demo" type="button">重新開始</button>
+        </div>
+        <div class="demo-console reveal">
+          <div class="demo-score"><span>迷你練習場</span><strong>分數：<b id="demo-score">0</b></strong></div>
+          <canvas id="game-canvas" width="640" height="360" tabindex="0" aria-label="鍵盤控制迷你遊戲，使用方向鍵或 WASD 收集黃色金幣"></canvas>
+          <p id="demo-message">點擊畫面後開始操作</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">PROJECT WORKFLOW</div>
+          <h2>下載與執行遊戲</h2>
+        </div>
+        <div class="workflow-grid">
+          <article class="workflow-card reveal"><span>1</span><h3>下載程式</h3><p>從遊戲範例按下「下載程式」，或下載整個 GitHub 儲存庫。</p></article>
+          <article class="workflow-card reveal"><span>2</span><h3>開啟資料夾</h3><p>使用 VS Code 或 Thonny 開啟下載後的專案資料夾。</p></article>
+          <article class="workflow-card reveal"><span>3</span><h3>安裝套件</h3><p>在終端機輸入 <code>python -m pip install pygame</code>。</p></article>
+          <article class="workflow-card reveal"><span>4</span><h3>執行遊戲</h3><p>輸入 <code>python examples/snake.py</code> 開始遊玩。</p></article>
+        </div>
+
+        <div class="project-tree reveal">
+          <div><h3>建議專案結構</h3><p>將程式與素材分開管理，專案會更容易維護。</p></div>
+          <pre><code>pygame/
+├── index.html
+├── styles.css
+├── script.js
+├── examples/
+│   ├── snake.py
+│   ├── dodge_game.py
+│   └── click_target.py
+├── images/
+├── sounds/
+└── requirements.txt</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <div class="section-heading reveal"><div class="eyebrow">FAQ</div><h2>常見問題</h2></div>
+        <div class="faq-list">
+          <details class="reveal"><summary>輸入 pip install pygame 後仍然無法 import，怎麼辦？</summary><p>確認安裝套件與執行程式使用相同的 Python。建議改用 <code>python -m pip install pygame</code>，再用 <code>python 檔名.py</code> 執行。</p></details>
+          <details class="reveal"><summary>為什麼按方向鍵沒有反應？</summary><p>先點一下遊戲視窗，使它取得鍵盤焦點；並確認遊戲迴圈中有持續執行 <code>pygame.event.get()</code>。</p></details>
+          <details class="reveal"><summary>KEYDOWN 和 get_pressed() 有什麼不同？</summary><p><code>KEYDOWN</code> 適合單次操作，例如跳躍或暫停；<code>get_pressed()</code> 適合按住後持續移動。</p></details>
+          <details class="reveal"><summary>如何避免玩家跑出遊戲畫面？</summary><p>建立玩家 Rect 後執行 <code>player.clamp_ip(screen.get_rect())</code>，即可把玩家限制在視窗範圍內。</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><a class="brand footer-brand" href="#top"><span class="brand-mark"><span class="python-blue">Py</span><span class="python-yellow">Game</span></span><span>Pygame 遊戲教室</span></a><p>從 Python 基礎開始，動手完成自己的 2D 遊戲。</p></div>
+      <div><strong>快速連結</strong><a href="#install">安裝工具</a><a href="#lessons">核心教學</a><a href="#games">遊戲範例</a></div>
+      <div><strong>專案</strong><a href="https://github.com/JackChung-Taiwan/pygame" target="_blank" rel="noreferrer">GitHub Repository</a><a href="README.md">README</a></div>
+    </div>
+    <div class="container footer-bottom"><span>© <span id="current-year"></span> Pygame 遊戲程式設計教室</span><a href="#top">回到頂端 ↑</a></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
